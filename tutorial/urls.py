@@ -21,3 +21,7 @@ urlpatterns = [
     path('', include('quickstart.urls')),
     path('', include('snippets.urls'))
 ]
+# 添加rest_framework提供的登录链接
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls'))
+]
