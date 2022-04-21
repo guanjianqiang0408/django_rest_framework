@@ -13,6 +13,8 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 
+
+# 如果希望能够从不具有CSRF令牌的客户端对此视图进行POST，因此我们需要将视图标记为csrf_exempt
 @csrf_exempt
 def snippet_list(request):
     """
@@ -32,6 +34,7 @@ def snippet_list(request):
             serializer.save()
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
+
 
 @csrf_exempt
 def snippet_detail(request, pk):
